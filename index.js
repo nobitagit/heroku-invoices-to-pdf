@@ -6,7 +6,7 @@ const { loginUrl, billingUrl } = require("./src/vars");
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  page.setViewport({ width: 1366, height: 768 });
+  page.setViewport({ width: 1300, height: 790 });
   await page.goto(loginUrl);
 
   // Fill in the login details
@@ -27,9 +27,13 @@ const { loginUrl, billingUrl } = require("./src/vars");
   await page.click('button[name="commit"]');
 
   await page.goto(billingUrl, { waitUntil: "networkidle2" });
-  await page.waitForSelector(".invoice-title");
-  const first = await page.$$(".invoice-title");
-  await page.screenshot({ path: "test.png" });
 
-  await browser.close();
+  // Once we get to the list of invoices click on the first and load the page
+  await page.waitForSelector(".invoice-title");
+  const input = await page.$$(".invoice-title input[type='submit']");
+  input[0].click();
+
+  // await page.screenshot({ path: "test.png" });
+
+  // await browser.close();
 })();
