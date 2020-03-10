@@ -1,6 +1,6 @@
 # Heroku invoices to PDF
 
-Automatically access your Heroku invoices, generate and download a PDF from them.
+Programmatically access your Heroku invoices, generate and download a PDF from them.
 
 ## Why is this useful?
 
