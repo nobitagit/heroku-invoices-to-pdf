@@ -33,7 +33,9 @@ const { loginUrl, billingUrl } = require("./src/vars");
   const input = await page.$$(".invoice-title input[type='submit']");
   input[0].click();
 
-  // await page.screenshot({ path: "test.png" });
+  await page.waitForSelector(".invoice-period");
+
+  await page.screenshot({ path: "test.png" });
 
   // await browser.close();
 })();
